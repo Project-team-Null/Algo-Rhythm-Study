@@ -1,6 +1,4 @@
-# import sys
 from collections import deque
-# input = sys.stdin.readline
 
 
 def solution(funcs, arr):
@@ -13,9 +11,9 @@ def solution(funcs, arr):
             if not deq:
                 return "error"
             deq.pop() if reverse_flag else deq.popleft()
-
-    result = deq.reverse() if reverse_flag else list(deq)
-    return str(result).replace(" ", "")
+    if reverse_flag:
+        deq.reverse()
+    return "[" + ",".join(deq) + "]"
 
 
 if __name__ == "__main__":
@@ -26,5 +24,5 @@ if __name__ == "__main__":
         arr_string = input()
         arr = []
         if len(arr_string) > 2:
-            arr = list(map(int, arr_string[1:-1].split(",")))
+            arr = arr_string[1:-1].split(",")
         print(solution(p, arr))
