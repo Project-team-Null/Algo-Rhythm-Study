@@ -15,8 +15,7 @@ if __name__ == '__main__':
         command = command[1:len(command) - 1].split(',')
         temp = []
         for n in command:
-            if n != '': temp.append(int(n))
-            else: temp.append(n)
+            temp.append(n)
         arr_input[i] = temp
 
     # 알고리즘
@@ -45,4 +44,4 @@ if __name__ == '__main__':
         # R이 홀수개 일 경우, 뒤집음
         if not is_front: arr_input[k].reverse()
 
-        print(arr_input[k])
+        print('[' + ','.join(arr_input[k]) + ']')
