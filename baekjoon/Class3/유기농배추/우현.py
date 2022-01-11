@@ -1,4 +1,4 @@
-def bfs(x, y):
+def bfs(x, y, board):
     dx = [1, -1, 0, 0]
     dy = [0, 0, -1, 1]
     queue = [[x, y]]
@@ -24,7 +24,7 @@ if __name__ == '__main__':
         for q in range(n):
             for w in range(m):
                 if board[q][w] == 1:
-                    bfs(q, w)
                     board[q][w] = 0
+                    bfs(q, w, board)
                     cnt += 1
         print(cnt)
