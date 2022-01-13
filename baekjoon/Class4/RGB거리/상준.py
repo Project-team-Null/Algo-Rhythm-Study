@@ -1,19 +1,17 @@
-def solve(R, G, B, n):
-    dp = [[R[0], G[0], B[0]]]
+def solve(RGB, n):
+    dp = [RGB[0]]
     for i in range(1, n):
-        r_min = min(R[i] + dp[i-1][1], R[i] + dp[i-1][2])
-        g_min = min(G[i] + dp[i-1][0], G[i] + dp[i-1][2])
-        b_min = min(B[i] + dp[i-1][0], B[i] + dp[i-1][1])
+        r_min = RGB[i][0] + min(dp[i-1][1], dp[i-1][2])
+        g_min = RGB[i][1] + min(dp[i-1][0], dp[i-1][2])
+        b_min = RGB[i][2] + min(dp[i-1][0], dp[i-1][1])
         dp.append([r_min, g_min, b_min])
 
     return dp[n-1]
 if __name__ == '__main__':
     n = int(input())
-    R, G, B = [], [], []
+    RGB = []
     for _ in range(n):
         r, g, b = map(int, input().split())
-        R.append(r)
-        G.append(g)
-        B.append(b)
+        RGB.append([r, g, b])
 
-    print(min(solve(R, G, B, n)))
+    print(min(solve(RGB, n)))
