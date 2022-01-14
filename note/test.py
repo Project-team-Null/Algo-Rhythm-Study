@@ -1,3 +1,3 @@
 if __name__ == '__main__':
-    l = [[] for i in range(8)]
+    l = list(range(-1,2,2))
     print(l)
