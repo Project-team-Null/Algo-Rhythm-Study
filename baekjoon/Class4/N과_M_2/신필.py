@@ -9,8 +9,7 @@ def solution(n, m):
             print(*arr)
         else:
             for i in range(arr[-1]+1, n+1):
-                if i not in arr:
-                    dfs(arr + [i])
+                dfs(arr + [i])
 
     for i in range(1, n - m + 2):
         dfs([i])
