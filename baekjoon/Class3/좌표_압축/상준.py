@@ -3,8 +3,6 @@ from queue import PriorityQueue
 if __name__ == '__main__':
     n = int(input())
     arr = list(map(int, input().split()))
-    n = 100000
-    arr = [i for i in range(n)]
     numset = set(arr)
     pq = PriorityQueue()
     count = dict()
