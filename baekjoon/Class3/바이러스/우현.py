@@ -1,6 +1,7 @@
 from sys import stdin
 from collections import deque
 
+
 def solution(dic):
     queue = deque([1])
     visited = set()
@@ -11,7 +12,6 @@ def solution(dic):
             if i not in visited:
                 visited.add(i)
                 queue.append(i)
-                
     return len(visited) - 1
 
 
