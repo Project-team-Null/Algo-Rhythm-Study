@@ -7,7 +7,7 @@ def solution(arr):
             return dp[n]
         dp[n] = dfs(n-3) + dfs(n-2) + dfs(n-1)
         return dp[n]
-    return map(lambda x: dfs(x), arr)
+    return map(dfs, arr)
 
 
 if __name__ == "__main__":
