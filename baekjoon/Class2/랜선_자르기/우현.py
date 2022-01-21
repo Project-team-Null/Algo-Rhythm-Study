@@ -3,7 +3,7 @@ import math
 
 
 def solution_bt(arr, n):
-    # Using Back tracking
+    # Using Back tracking, for Pypy3 only
     length = sum(arr) // n
     while True:
         cnt = 0
@@ -21,7 +21,7 @@ def solution_bt(arr, n):
 
 
 def solution_bs(arr, n):
-    # Using Binary search
+    # Using Binary search, for python3
     max_length = sum(arr) // n
     length = max_length
     visited = set()
