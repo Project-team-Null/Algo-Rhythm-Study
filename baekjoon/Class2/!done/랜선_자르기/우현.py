@@ -8,7 +8,6 @@ def solution_bt(arr, n):
     while True:
         cnt = 0
         maxi = -1
-        temp = 0
         next_len = 0
         for val in arr:
             cnt += val // length
