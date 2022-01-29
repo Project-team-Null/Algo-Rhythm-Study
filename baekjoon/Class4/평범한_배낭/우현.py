@@ -1,5 +1,3 @@
-from sys import stdin
-
 
 def solution(lst, k):
     dp = [0] * (k + 1)
@@ -10,12 +8,11 @@ def solution(lst, k):
 
 
 if __name__ == "__main__":
-    read = stdin.readline
-    n, k = map(int, read().split())
+    n, k = map(int, input().split())
     lst = []
     dp = [0] * (k + 1)
     for i in range(n):
-        w, v = map(int, read().split())
+        w, v = map(int, input().split())
         if w <= k:
             lst.append((w, v))
     print(solution(lst, k))
