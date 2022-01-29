@@ -1,9 +1,8 @@
-if __name__ == "__main__":
-    n, k = map(int, input().split())
-    dp = [0] * (k + 1)
-    for _ in range(n):
-        w, v = map(int, input().split())
-        if w <= k:
-            for i in range(k, w - 1, -1):
-                dp[i] = max(dp[i], dp[i - w] + v)
-    print(dp[-1])
+m, r = lambda: map(int, input().split()), range
+n, k = m()
+d = [0]*(k+1)
+for _ in r(n):
+    w, v = m()
+    for i in r(k, w-1, -1):
+        d[i] = max(d[i], d[i-w]+v)
+print(d[k])
