@@ -9,4 +9,4 @@ if __name__ == '__main__':
         for j in range(i):
             if seq[i] > seq[j]:
                 ans[i+1] = max(ans[i+1], ans[j+1]+1)
-    print(max(ans))
+    print(max(ans)+1)
