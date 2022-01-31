@@ -55,21 +55,27 @@ class Heap:
         return result
 
 
-# def solution1(cmd_list):
-#     plus_heap = []
-#     minus_heap = []
-#     for cmd in cmd_list:
-#         if cmd == 0:
-#             if plus_heap and minus_heap:
-#                 if plus_heap[0] == minus_heap[0]:
-#                     print(heapq.heappop(minus_heap))
-#             else:
-#                 print(0)
-#         else:
-#             if cmd < 0:
-#                 heapq.heappush(minus_heap, cmd)
-#             else:
-#                 heapq.heappush(plus_heap, cmd)
+def solution1(cmd_list):
+    plus_heap = []
+    minus_heap = []
+    for cmd in cmd_list:
+        if cmd == 0:
+            if not plus_heap and not minus_heap:
+                print(0)
+            elif not plus_heap:
+                print(-heapq.heappop(minus_heap))
+            elif not minus_heap:
+                print(heapq.heappop(plus_heap))
+            elif plus_heap[0] >= minus_heap[0]:
+                print(-heapq.heappop(minus_heap))
+            else:
+                print(heapq.heappop(plus_heap))
+
+        else:
+            if cmd < 0:
+                heapq.heappush(minus_heap, -cmd)
+            else:
+                heapq.heappush(plus_heap, cmd)
 
 
 def solution2(cmd_list):
@@ -86,4 +92,4 @@ if __name__ == "__main__":
     cmd_list = []
     for _ in range(n):
         cmd_list.append(int(input()))
-    solution2(cmd_list)
+    solution1(cmd_list)
