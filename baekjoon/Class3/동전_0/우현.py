@@ -7,7 +7,7 @@ if __name__ == "__main__":
 
     cnt = 0
     for i in reversed(lst):
-        if k >= i:
+        if k > i:
             cnt += k // i
             k %= i
     print(cnt)
