@@ -2,6 +2,7 @@ from sys import stdin
 from collections import defaultdict
 import heapq
 
+
 if __name__ == '__main__':
     read = stdin.readline
     t = int(read().rstrip())
