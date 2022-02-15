@@ -24,7 +24,7 @@ if __name__ == "__main__":
     read = stdin.readline
     v, e = map(int, read().split())
     k = int(read())
-    board = {n: defaultdict(lambda: 11) for n in range(1, v + 1)}
+    board = defaultdict(lambda: defaultdict(lambda: 11))
     for _ in range(e):
         n_from, n_to, w = map(int, read().split())
         board[n_from][n_to] = min(board[n_from][n_to], w)
