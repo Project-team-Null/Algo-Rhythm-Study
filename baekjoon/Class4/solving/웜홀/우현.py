@@ -3,7 +3,7 @@ from collections import defaultdict
 
 
 def bellmanford(graph, n):
-    dist = [0] * (n + 1)
+    dist = [1000000000] * (n + 1)
     for i in range(n):
         for j in range(1, n + 1):
             for next_node, weight in graph[j]:
