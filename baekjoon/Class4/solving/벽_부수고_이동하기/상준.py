@@ -14,7 +14,7 @@ def bfs(board, n, m):
             if (y, x) in visited_b: continue
             visited_b.add((y, x))
         else:
-            if (y, x) in visited_b or (y, x) in visited_a): continue
+            if (y, x) in visited_b or (y, x) in visited_a: continue
             visited_a.add((y, x))
 
         for i in range(4):
