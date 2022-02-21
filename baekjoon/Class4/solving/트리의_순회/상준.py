@@ -5,7 +5,7 @@ def solve(inorder, postorder, i_frm, i_to, p_frm, p_to, idx_dict):
     if p_frm > p_to: return
     pivot = idx_dict[postorder[p_to]]
     print(postorder[p_to], end = " ")
-    solve(inorder, postorder, i_frm, pivot-1, p_frm, p_to - (i_to - pivot + 1), idx_dict)
+    solve(inorder, postorder, i_frm, pivot-1, p_frm, p_frm + pivot - i_frm - 1, idx_dict)
     solve(inorder, postorder, pivot+1, i_to, p_frm + pivot - i_frm, p_to-1, idx_dict)
 
 
