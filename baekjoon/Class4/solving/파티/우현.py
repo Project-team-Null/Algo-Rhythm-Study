@@ -21,7 +21,7 @@ def dijkstra(graph, n, k):
     return distance
 
 
-def aStar(graph, n, frm, to):  # heuristic = 0
+def UniformCostSearch(graph, n, frm, to):
     heap = []
     heapq.heappush(heap, (0, frm))
     visited = [float('inf')] * (n + 1)
@@ -62,5 +62,5 @@ if __name__ == "__main__":
     x_to_n = dijkstra(graph, n, x)
     max_cost = 0
     for i in range(1, n + 1):
-        max_cost = max(max_cost, x_to_n[i] + aStar(graph, n, i, x))
+        max_cost = max(max_cost, x_to_n[i] + UniformCostSearch(graph, n, i, x))
     print(max_cost)
