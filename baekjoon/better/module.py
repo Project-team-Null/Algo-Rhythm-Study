@@ -20,7 +20,6 @@ class Pool:
 
     player_num = 0
     player_arr = []
-    all_in = set()
 
     def __init__(self, n, init_money, base):
         self.base_bet = base
@@ -60,7 +59,10 @@ class Pool:
 
     def add_bet(self, p_idx):
         player = self.player_arr[p_idx]
+        temp = self.total_bet // 2
+        temp -= temp % self.base_bet
         player.cur_bet += min(self.base_bet, player.money)
+        player.cur_bet = min(player.cur_bet, temp)
 
     def remove_bet(self, p_idx):
         player = self.player_arr[p_idx]
@@ -70,8 +72,6 @@ class Pool:
         player = self.player_arr[p_idx]
         player.tot_bet += player.cur_bet
         player.money -= player.cur_bet
-        if player.money == 0:
-            self.all_in.add([p_idx, player.tot_bet])
         self.total_bet += player.cur_bet
         player.cur_bet = 0
         self.max_bet = max(self.max_bet, player.tot_bet)
@@ -89,3 +89,11 @@ class Pool:
         for player in self.player_arr:
             player.reset()
         self.start_game()
+
+
+if __name__ == '__main__':
+    p = Pool(3, 10000, 100)
+    p.start_game()
+    for player in p.player_arr:
+        print(player.money, player.is_alive)
+    print(p.total_bet)
