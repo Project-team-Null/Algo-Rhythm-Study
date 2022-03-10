@@ -1,0 +1,32 @@
+@import '~antd/dist/antd.css';
+.pool {
+  padding: 24px;
+  background: #fff;
+}
+.user {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 50px;
+  min-height: 280px;
+  padding: 24px;
+  background: #fff;
+}
+.footer {
+  margin-top: 50px;
+  min-height: 20px;
+}
+.user-status {
+  display: flex;
+  width: 80%;
+  justify-content: space-around;
+}
+.button-list {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 500px;
+}
