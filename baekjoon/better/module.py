@@ -95,5 +95,38 @@ if __name__ == '__main__':
     p = Pool(3, 10000, 100)
     p.start_game()
     for player in p.player_arr:
-        print(player.money, player.is_alive)
+        if player.is_alive:
+            print(player.money, player.is_alive)
+    print(p.total_bet)
+    p.add_bet(1)
+    p.confirm_bet(1)
+    p.half(2)
+    p.confirm_bet(2)
+    p.call(0)
+    p.confirm_bet(0)
+    p.call(1)
+    p.confirm_bet(1)
+    for player in p.player_arr:
+        if player.is_alive:
+            print(player.money, player.is_alive)
+    p.turn_change()
+    print(p.total_bet)
+
+    p.confirm_bet(2)
+    p.add_bet(0)
+    p.confirm_bet(0)
+    p.call(1)
+    p.confirm_bet(1)
+    p.call(2)
+    p.confirm_bet(2)
+    for player in p.player_arr:
+        if player.is_alive:
+            print(player.money, player.is_alive)
+    p.turn_change()
+    print(p.total_bet)
+
+    p.end_game([1])
+    for player in p.player_arr:
+        if player.is_alive:
+            print(player.money, player.is_alive)
     print(p.total_bet)
