@@ -14,7 +14,7 @@ def bfs(cheese, n, m):
         for i in range(4):
             ny = y + dy[i]
             nx = x + dx[i]
-            if 0 <= ny < n and 0 <= nx < m and (cheese[ny][nx] == 0 or cheese[ny][nx] == -1):
+            if 0 <= ny < n and 0 <= nx < m and cheese[ny][nx] != 1:
                 que.append((ny, nx))
 
 
@@ -24,7 +24,7 @@ def is_melt(cheese, y, x):
     cnt = 0
     for i in range(4):
         if cheese[y+dy[i]][x+dx[i]] == -1: cnt += 1
-    return cnt
+    return cnt >= 2
 
 
 if __name__ == '__main__':
@@ -32,16 +32,15 @@ if __name__ == '__main__':
     n, m = map(int, read().rstrip().split())
     cheese = [list(map(int, read().rstrip().split())) for _ in range(n)]
     ans = 0
-    while True:
+    remain = True
+    while remain:
         ans += 1
+        remain = False
         bfs(cheese, n, m)
-        positions = []
         for i in range(1, n-1):
             for j in range(1, m-1):
-                if cheese[i][j] == 1:
-                    if is_melt(cheese, i, j) >= 2:
-                        positions.append((i, j))
-        if len(positions) == 0: break
-        for y, x in positions:
-            cheese[y][x] = -1
+                if cheese[i][j] == 1 and is_melt(cheese, i, j):
+                    cheese[i][j] = 0
+                    remain = True
+        
     print(ans-1)
