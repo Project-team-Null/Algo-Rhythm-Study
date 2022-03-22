@@ -38,7 +38,7 @@ def partition_ls(arr, p, r, pivot_value):
         if arr[j] <= pivot_value:
             i = i + 1
             arr[i], arr[j] = arr[j], arr[i]
-    return i + 1
+    return i
 
 
 def linear_select(arr, p, r, i):
@@ -60,13 +60,14 @@ def linear_select(arr, p, r, i):
     q = partition_ls(arr, p, r, pivot_value)
     s = q - p + 1
     if i < s: return linear_select(arr, p, q-1, i)
-    else: return linear_select(arr, q, r, i-s+1)
+    if i == s: return arr[q]
+    else: return linear_select(arr, q+1, r, i-s)
 
 
 if __name__ == '__main__':
     read = stdin.readline
-    n = 200
-    rand_arr = [0] + list(np.random.randint(1, 1001, n))
+    n = 20
+    rand_arr = [0] + list(np.random.randint(1, 101, n))
     sorted_arr = deepcopy(rand_arr)
     insertion_sort(sorted_arr, 1, n)
     while True:
@@ -75,5 +76,6 @@ if __name__ == '__main__':
         if input > n:
             print("wrong input")
             continue
+        print(sorted_arr[1:])
         print(select(rand_arr, 1, n, input))
         print(linear_select(rand_arr, 1, n, input))
