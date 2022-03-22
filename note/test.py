@@ -1,5 +1,6 @@
 from sys import stdin
 import numpy as np
+from copy import deepcopy
 
 def partition(arr, p, r):
     x = arr[r]
@@ -21,13 +22,58 @@ def select(arr, p, r, i):
     else: return select(arr, q+1, r, i-k)
 
 
+def insertion_sort(arr, p, r):
+    for j in range(p+1, r+1):
+        key = arr[j]
+        i = j - 1
+        while i > p-1 and arr[i] > key:
+            arr[i+1] = arr[i]
+            i = i - 1
+        arr[i+1] = key
+
+
+def partition_ls(arr, p, r, pivot_value):
+    i = p - 1
+    for j in range(p, r+1):
+        if arr[j] <= pivot_value:
+            i = i + 1
+            arr[i], arr[j] = arr[j], arr[i]
+    return i + 1
+
+
+def linear_select(arr, p, r, i):
+    if r - p <= 4:
+        insertion_sort(arr, p, r)
+        return arr[p+i-1]
+
+    medians = [0]
+    for j in range(p, r+1, 5):
+        end = min(j+4, r)
+        mid = j + (end-j+1)//2
+        insertion_sort(arr, j, end)
+        medians.append(arr[mid])
+    
+    n = len(medians) - 1
+    k = n // 2 if n % 2 == 0 else n // 2 + 1
+    pivot_value = linear_select(medians, 1, n, k)
+    
+    q = partition_ls(arr, p, r, pivot_value)
+    s = q - p + 1
+    if i < s: return linear_select(arr, p, q-1, i)
+    else: return linear_select(arr, q, r, i-s+1)
+
+
 if __name__ == '__main__':
     read = stdin.readline
-    rand_arr = [0] + list(np.random.randint(1, 101, 20))
-    sorted_arr = sorted(rand_arr)
-    print(rand_arr[1:])
-    print(sorted_arr[1:])
+    n = 200
+    rand_arr = [0] + list(np.random.randint(1, 1001, n))
+    sorted_arr = deepcopy(rand_arr)
+    insertion_sort(sorted_arr, 1, n)
     while True:
         input = int(read())
         if input == -1: break
-        print(select(rand_arr, 1, 20, input))
+        if input > n:
+            print("wrong input")
+            continue
+        print(select(rand_arr, 1, n, input))
+        print(linear_select(rand_arr, 1, n, input))
