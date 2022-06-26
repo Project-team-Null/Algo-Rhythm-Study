@@ -14,12 +14,8 @@ if __name__ == "__main__":
         graph[frm].append(to)
         t_graph[to].append(frm)
 
-    for i in range(1, v + 1):
-        graph[i].sort()
-
     visited = set()
     finish_map = dict()
-    order_map = dict()
     scc = []
     connections = []
     order = 0
@@ -36,15 +32,11 @@ if __name__ == "__main__":
         if finish_check:
             global order
             finish_map[node] = order
-            order_map[order] = node
             order += 1
 
     for node in range(1, v + 1):
         if node not in visited:
             dfs(node, True)
-
-    for i in range(1, v + 1):
-        t_graph[i].sort(key=lambda x: -finish_map[x])
 
     visited.clear()
     cnt = 0
